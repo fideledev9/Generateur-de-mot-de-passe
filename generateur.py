@@ -63,6 +63,3 @@ def supprimer_mot_de_passe(site):
     else:
         print("Site introuvable")
 
-# ZONE DE TEST
-supprimer_mot_de_passe("facebook")
-afficher_mots_de_passe()

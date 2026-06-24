@@ -1,4 +1,5 @@
 import random
+import site
 import string
 import json
 
@@ -37,6 +38,31 @@ def afficher_mots_de_passe():
     for site, mot_de_passe in donnees.items():
         print(f"{site} : {mot_de_passe}")
 
+#Etape 4 :rechercher un mot de passe
+def rechercher_mot_de_passe(site):
+    with open("mots_de_passe.json", "r", encoding="utf-8") as f:
+        donnees = json.load(f)
+    if site in donnees:
+        print(f"{site} : {donnees[site]}")
+    else:
+        print("Site introuvable")
+
+# Etape 5 : supprimer un mot de passe
+def supprimer_mot_de_passe(site):
+    # Lecture des données existantes
+    with open("mots_de_passe.json", "r", encoding="utf-8") as f:
+        donnees = json.load(f)
+    # Vérification si le site existe
+    if site in donnees:
+        # Suppression du site
+        del donnees[site]
+        # Sauvegarde du fichier mis à jour
+        with open("mots_de_passe.json", "w", encoding="utf-8") as f:
+            json.dump(donnees, f)
+        print(f"{site} supprimé avec succès")
+    else:
+        print("Site introuvable")
+
 # ZONE DE TEST
-sauvegarder_mot_de_passe("twitter", generer_mot_de_passe(8))
+supprimer_mot_de_passe("facebook")
 afficher_mots_de_passe()
